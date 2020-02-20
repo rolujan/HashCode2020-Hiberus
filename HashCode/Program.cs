@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace HashCode
 {
+    class State
+    {
+        List<>
+    }
     class Program
     {
         private static Input _input;
@@ -125,5 +129,35 @@ namespace HashCode
                 .Where(book => book.Id.Equals(index))
                 .First();
         }
+        public static void EscribeSalida(List<Library> librerias, FileStream salida)
+        {
+            using (StreamWriter writer = new StreamWriter(salida))
+            {
+
+                foreach (var liberia in librerias)
+                {
+                    if (liberia.Libros.Count == 0)
+                    {
+                        writer.WriteLine(liberia.Id);
+                    }
+                    else
+                    {
+                        writer.WriteLine($"{liberia.Id} {liberia.Libros.Count}");
+                        string linea = "";
+                        foreach (var libro in liberia.Libros)
+                        {
+                            linea += " " + libro.Id;
+                        }
+                        writer.WriteLine(linea.Substring(1));
+                    }
+                }
+            }
+
+        }
+
+        public static State FindSolution(List<Library> libraries,int dias)
+        {
+
+        }
+
     }
-}
