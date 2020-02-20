@@ -154,7 +154,7 @@ namespace HashCode
 
                             bookScanOrder += bookToScan.Id;
 
-                            if (index == library.BooksToScan.Count - 1)
+                            if (index != library.BooksToScan.Count - 1)
                                 bookScanOrder += " ";
                         }
 

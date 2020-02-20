@@ -9,7 +9,34 @@ namespace HashCode.Bussiness
         public static Output Apply(Input container)
         {
             Output output = new Output();
+
             output.Libraries = new LinkedList<LibraryOutput>();
+
+            LinkedList<Book> library1Books = new LinkedList<Book>();
+            library1Books.AddLast(new Book { Id = 5 });
+            library1Books.AddLast(new Book { Id = 2 });
+            library1Books.AddLast(new Book { Id = 3 });
+
+            LibraryOutput library1Output = new LibraryOutput {
+                Id = 1,
+                BooksToScan = library1Books
+            };
+
+            output.Libraries.AddLast(library1Output);
+
+            LinkedList<Book> library2Books = new LinkedList<Book>();
+            library2Books.AddLast(new Book { Id = 0 });
+            library2Books.AddLast(new Book { Id = 1 });
+            library2Books.AddLast(new Book { Id = 2 });
+            library2Books.AddLast(new Book { Id = 3 });
+            library2Books.AddLast(new Book { Id = 4 });
+
+            LibraryOutput library2Output = new LibraryOutput {
+                Id = 0,
+                BooksToScan = library2Books
+            };
+
+            output.Libraries.AddLast(library2Output);
 
             return output;
         }
