@@ -10,7 +10,17 @@ namespace HashCode
 {
     class State
     {
-        List<>
+        public HashSet<Book> Sent { get; set; }
+        public List<Library> OpenLibraries{ get; set; }
+        public List<Library> ClosedLibraries { get; set; }
+        public State()
+        {
+            Sent = new HashSet<Book>();
+            ExpendedTime = 0;
+            OpenLibraries = new List<Library>();
+            ClosedLibraries = new List<Library>();
+        }
+        int ExpendedTime { get; set; }
     }
     class Program
     {
@@ -97,15 +107,15 @@ namespace HashCode
 
                 foreach (var liberia in librerias)
                 {
-                    if (liberia.Libros.Count == 0)
+                    if (liberia.Books.Count == 0)
                     {
                         writer.WriteLine(liberia.Id);
                     }
                     else
                     {
-                        writer.WriteLine($"{liberia.Id} {liberia.Libros.Count}");
+                        writer.WriteLine($"{liberia.Id} {liberia.Books.Count}");
                         string linea = "";
-                        foreach (var libro in liberia.Libros)
+                        foreach (var libro in liberia.Books)
                         {
                             linea += " " + libro.Id;
                         }
@@ -118,6 +128,31 @@ namespace HashCode
 
         public static State FindSolution(List<Library> libraries,int dias)
         {
+            Queue<State> states = new Queue<State>();
+            State state = null;
+            List<State> solution = new List<State();
+
+            state = new State();
+            state.ClosedLibraries = libraries;
+            while ((state = states.Peek())!=null){
+                foreach(var library in state.ClosedLibraries)
+                {
+                    State state2 = new State();
+                    Library library2 = new Library();
+                    library2.Id = library.Id;
+                    int nDiasRestantes = dias - state2.
+                    library2.
+                    states.Append(state2);
+                    state2.OpenLibraries.AddRange(state.OpenLibraries);
+                    state2.ClosedLibraries.AddRange(state.ClosedLibraries);
+                    state2.ClosedLibraries.Remove(library);
+                    state2.OpenLibraries.Append(library2);
+
+                }
+            }
+            while () { }
+
+            return state;
 
         }
 
