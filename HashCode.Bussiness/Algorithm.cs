@@ -1,4 +1,5 @@
 ﻿using HashCode.Entities;
+using System.Collections.Generic;
 
 namespace HashCode.Bussiness
 {
@@ -6,7 +7,10 @@ namespace HashCode.Bussiness
     {
         public static Output Apply(Input container)
         {
-            return new Output();
+            Output output = new Output();
+            output.Libraries = new LinkedList<Library>();
+
+            return output;
         }
     }
 }

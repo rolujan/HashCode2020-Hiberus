@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace HashCode
 {
-    class State
-    {
-        List<>
-    }
     class Program
     {
+        private static string inputPath = @"D:\proyectos\.NET\HashCode2020-Hiberus\FilesInput\a_example.txt";
+        private static string outputPath = @"D:\proyectos\.NET\HashCode2020-Hiberus\FilesOutput\a_example.txt";
+
         private static Input _input;
 
         static void Main(string[] args)
@@ -27,9 +26,7 @@ namespace HashCode
             *    Leemos el fichero   *
             *************************/
 
-            string path = @"D:\proyectos\.NET\HashCode2020-Hiberus\HashCode\Files\a_example.txt";
-
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(inputPath, FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs, Encoding.ASCII);
 
             // Leemos la línea 1
@@ -48,11 +45,13 @@ namespace HashCode
             * Aplicamos el algoritmo *
             *************************/
 
-            Algorithm.Apply(_input);
+            Output output = Algorithm.Apply(_input);
 
             /*************************
-            *  Preparamos la salida  *
+            *  Guardamos la salida   *
             *************************/
+
+            SaveFileWithOutput(output);
 
             // Para evitar cerrar la consola
             Console.ReadLine();
@@ -81,7 +80,8 @@ namespace HashCode
 
             for (int index = 0; index < scoreList.Count; index++)
             {
-                Book book = new Book {
+                Book book = new Book
+                {
                     Id = index,
                     Score = int.Parse(scoreList[index])
                 };
@@ -100,7 +100,8 @@ namespace HashCode
             {
                 List<string> libraryLine1 = otherLine.Split(' ').ToList();
 
-                Library library = new Library {
+                Library library = new Library
+                {
                     Books = new LinkedList<Book>(),
                     TimeToSignup = int.Parse(libraryLine1[1]),
                     NumberOfBooksCanScanPerDay = int.Parse(libraryLine1[2])
@@ -129,35 +130,32 @@ namespace HashCode
                 .Where(book => book.Id.Equals(index))
                 .First();
         }
-        public static void EscribeSalida(List<Library> librerias, FileStream salida)
-        {
-            using (StreamWriter writer = new StreamWriter(salida))
-            {
 
-                foreach (var liberia in librerias)
+        public static void SaveFileWithOutput(Output output)
+        {
+            using (FileStream fileStream = File.Create(outputPath))
+            {
+                using (StreamWriter writer = new StreamWriter(fileStream))
                 {
-                    if (liberia.Libros.Count == 0)
+                    foreach (var liberia in output.Libraries)
                     {
-                        writer.WriteLine(liberia.Id);
-                    }
-                    else
-                    {
-                        writer.WriteLine($"{liberia.Id} {liberia.Libros.Count}");
-                        string linea = "";
-                        foreach (var libro in liberia.Libros)
+                        if (liberia.Books.Count == 0)
                         {
-                            linea += " " + libro.Id;
+                            writer.WriteLine(liberia.Id);
                         }
-                        writer.WriteLine(linea.Substring(1));
+                        else
+                        {
+                            writer.WriteLine($"{liberia.Id} {liberia.Books.Count}");
+                            string linea = "";
+                            foreach (var libro in liberia.Books)
+                            {
+                                linea += " " + libro.Id;
+                            }
+                            writer.WriteLine(linea.Substring(1));
+                        }
                     }
                 }
             }
-
         }
-
-        public static State FindSolution(List<Library> libraries,int dias)
-        {
-
-        }
-
     }
+}
