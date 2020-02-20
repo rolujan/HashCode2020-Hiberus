@@ -3,5 +3,11 @@ packages/
 *.csproj.user
 *.vspscc
 *.vssscc
+HashCode.Entities/bin
 HashCode.Entities/obj
+HashCode.Bussiness/bin
+HashCode.Bussiness/obj
+HashCode/HashCode.Bussiness/bin
+HashCode/HashCode.Bussiness/obj
+HashCode/bin
 HashCode/obj
