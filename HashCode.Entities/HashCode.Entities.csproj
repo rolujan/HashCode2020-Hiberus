@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="LibraryOutput.cs" />
     <Compile Include="Output.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Library.cs" />

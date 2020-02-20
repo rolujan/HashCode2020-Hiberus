@@ -4,6 +4,10 @@ namespace HashCode.Entities
 {
     public class Output
     {
-        public LinkedList<Library> Libraries { get; set; }
+        public int NumberOfLibraries {
+            get { return Libraries.Count; }
+        }
+
+        public LinkedList<LibraryOutput> Libraries { get; set; }
     }
 }

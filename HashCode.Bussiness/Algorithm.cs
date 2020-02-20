@@ -8,7 +8,7 @@ namespace HashCode.Bussiness
         public static Output Apply(Input container)
         {
             Output output = new Output();
-            output.Libraries = new LinkedList<Library>();
+            output.Libraries = new LinkedList<LibraryOutput>();
 
             return output;
         }

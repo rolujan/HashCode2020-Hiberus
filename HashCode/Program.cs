@@ -80,8 +80,7 @@ namespace HashCode
 
             for (int index = 0; index < scoreList.Count; index++)
             {
-                Book book = new Book
-                {
+                Book book = new Book {
                     Id = index,
                     Score = int.Parse(scoreList[index])
                 };
@@ -137,22 +136,29 @@ namespace HashCode
             {
                 using (StreamWriter writer = new StreamWriter(fileStream))
                 {
-                    foreach (var liberia in output.Libraries)
+                    // Line 1
+
+                    writer.WriteLine(output.NumberOfLibraries);
+
+                    // Lines with libraries
+
+                    foreach (var library in output.Libraries)
                     {
-                        if (liberia.Books.Count == 0)
+                        writer.WriteLine(library.Id + " " + library.BooksToScan.Count);
+
+                        string bookScanOrder = String.Empty;
+
+                        for (int index = 0; index < library.BooksToScan.Count; index++)
                         {
-                            writer.WriteLine(liberia.Id);
+                            Book bookToScan = library.BooksToScan.ElementAt(index);
+
+                            bookScanOrder += bookToScan.Id;
+
+                            if (index == library.BooksToScan.Count - 1)
+                                bookScanOrder += " ";
                         }
-                        else
-                        {
-                            writer.WriteLine($"{liberia.Id} {liberia.Books.Count}");
-                            string linea = "";
-                            foreach (var libro in liberia.Books)
-                            {
-                                linea += " " + libro.Id;
-                            }
-                            writer.WriteLine(linea.Substring(1));
-                        }
+
+                        writer.WriteLine(bookScanOrder);
                     }
                 }
             }
