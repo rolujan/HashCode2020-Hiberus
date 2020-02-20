@@ -10,6 +10,9 @@ namespace HashCode
     {
         static void Main(string[] args)
         {
+
+            // Para evitar cerrar la consola
+            Console.ReadLine();
         }
     }
 }
