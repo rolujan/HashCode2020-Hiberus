@@ -3,4 +3,5 @@ packages/
 *.csproj.user
 *.vspscc
 *.vssscc
-
+HashCode.Entities/obj
+HashCode/obj
