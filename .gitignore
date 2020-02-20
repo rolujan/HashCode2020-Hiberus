@@ -1,0 +1,6 @@
+.vs/
+packages/
+*.csproj.user
+*.vspscc
+*.vssscc
+
